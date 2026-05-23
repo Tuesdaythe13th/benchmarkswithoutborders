@@ -12,7 +12,7 @@
     "language",
     "hazard_tag"
   ],
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "id": {
       "type": "string",
