@@ -27,12 +27,11 @@ import argparse
 import hashlib
 import json
 import logging
-import os
 import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 logging.basicConfig(
     level=logging.INFO,
@@ -56,6 +55,7 @@ VALID_HAZARD_TAGS = {
 # ---------------------------------------------------------------------------
 # Schema loader (optional – only used when jsonschema is installed)
 # ---------------------------------------------------------------------------
+
 
 def load_schema(schema_path: Path) -> Optional[dict]:
     try:
