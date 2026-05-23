@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+*.idx.json
+
+# Evaluator runtime artifacts
+*.checkpoint.json
+/tmp/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test outputs
+/results/
+scores.csv
+clean_sample.jsonl
