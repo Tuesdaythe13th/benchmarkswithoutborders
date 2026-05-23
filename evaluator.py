@@ -32,12 +32,14 @@ High-throughput features:
 import argparse
 import contextlib
 import csv
+import hashlib
 import json
 import logging
 import time
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
+import numpy as np
 import torch
 import tqdm
 from sentence_transformers import SentenceTransformer, util
@@ -175,11 +177,52 @@ def collate_fn(batch: List[dict]) -> Tuple[List[str], List[dict]]:
 
 
 # ---------------------------------------------------------------------------
+# Offline stub encoder (used when --stub-model is set; no downloads required)
+# ---------------------------------------------------------------------------
+
+class StubEncoder:
+    """Deterministic hash-based encoder for offline smoke testing.
+
+    Produces unit-norm vectors seeded by the MD5 of each input string, so
+    identical texts always yield identical embeddings without any model download.
+    The embedding dimension (128) is intentionally small for CI speed.
+    """
+
+    DIM = 128
+
+    def encode(
+        self,
+        texts: List[str],
+        convert_to_tensor: bool = False,
+        normalize_embeddings: bool = True,
+        show_progress_bar: bool = False,
+    ) -> Any:
+        vecs = []
+        for t in texts:
+            seed = int(hashlib.md5(t.encode()).hexdigest()[:8], 16) % (2 ** 31)
+            rng = np.random.default_rng(seed)
+            v = rng.standard_normal(self.DIM).astype(np.float32)
+            if normalize_embeddings:
+                v /= np.linalg.norm(v) + 1e-12
+            vecs.append(v)
+        arr = np.stack(vecs)
+        if convert_to_tensor:
+            return torch.from_numpy(arr)
+        return arr
+
+    def eval(self) -> "StubEncoder":
+        return self
+
+    def half(self) -> "StubEncoder":
+        return self
+
+
+# ---------------------------------------------------------------------------
 # Safe-template embedding cache
 # ---------------------------------------------------------------------------
 
 def build_safe_embeddings(
-    model: SentenceTransformer, device: torch.device
+    model: Any, device: torch.device
 ) -> Dict[str, torch.Tensor]:
     """Compute one averaged, L2-normalised embedding per hazard."""
     log.info("Pre-computing safe-template embeddings …")
@@ -248,14 +291,18 @@ def evaluate(args: argparse.Namespace) -> None:
     append_mode = start_row > 0
 
     # --- model ----------------------------------------------------------
-    log.info("Loading model %s on %s …", args.model, device)
-    model = SentenceTransformer(args.model, device=str(device))
-    model.eval()
-    if args.half and device.type == "cuda":
-        model.half()
-        log.info("Model converted to half-precision (fp16).")
-    if device.type == "cuda":
-        torch.backends.cudnn.benchmark = True
+    if args.stub_model:
+        log.info("Using offline StubEncoder (--stub-model); no model download.")
+        model: Any = StubEncoder()
+    else:
+        log.info("Loading model %s on %s …", args.model, device)
+        model = SentenceTransformer(args.model, device=str(device))
+        model.eval()
+        if args.half and device.type == "cuda":
+            model.half()
+            log.info("Model converted to half-precision (fp16).")
+        if device.type == "cuda":
+            torch.backends.cudnn.benchmark = True
 
     # --- safe-template embeddings (always fp32 for stability) -----------
     safe_embeddings = build_safe_embeddings(model, device)
@@ -419,6 +466,12 @@ def parse_args() -> argparse.Namespace:
                         help="Flush CSV and write checkpoint every N rows.")
     parser.add_argument("--keep-checkpoint", action="store_true",
                         help="Keep checkpoint file after a successful full run.")
+    parser.add_argument(
+        "--stub-model", action="store_true",
+        help="Use a deterministic offline StubEncoder instead of downloading a "
+             "sentence-transformer model. Intended for CI smoke tests in "
+             "network-restricted environments. Never use in production.",
+    )
     return parser.parse_args()
 
 
