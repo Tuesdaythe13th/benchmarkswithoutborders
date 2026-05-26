@@ -1,0 +1,44 @@
+{
+  "bbom_version": "1.0",
+  "run_timestamp": "2026-05-23 21:56:51 UTC",
+  "notebook": "ARTIFEX_v9_Ethical_Feedback_AILuminate.ipynb",
+  "principal_investigator": "Tuesday @ ARTIFEX Labs",
+  "data": {
+    "source": "feedback_data.csv",
+    "rows": 50,
+    "columns": [
+      "timestamp",
+      "user_id",
+      "feedback_text",
+      "rating",
+      "text_len",
+      "timestamp_dt"
+    ]
+  },
+  "embedding_model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "clustering": {
+    "algorithm": "K-Means",
+    "k": 10,
+    "best_silhouette": 1.0
+  },
+  "safety_routing": {
+    "standard": "MLCommons AILuminate v1.0",
+    "verdicts": {
+      "PASS": 50
+    }
+  },
+  "llm_summarization": {
+    "providers_tried": [
+      "Anthropic claude-opus-4-7",
+      "OpenAI gpt-4o",
+      "HuggingFace Mistral-7B",
+      "template"
+    ],
+    "clusters_summarized": 10
+  },
+  "compliance": [
+    "NIST AI 800-3",
+    "MLCommons AILuminate v1.0",
+    "ISO/IEC 42119-2"
+  ]
+}
