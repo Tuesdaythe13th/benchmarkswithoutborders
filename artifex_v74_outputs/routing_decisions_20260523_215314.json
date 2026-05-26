@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "run_timestamp": "20260523_215314",
+    "embed_model": "paraphrase-multilingual-MiniLM-L12-v2",
+    "n_clusters": 5,
+    "random_seed": 42,
+    "llm_provider": "gemini",
+    "n_rows": 200,
+    "notebook": "ARTIFEX_v7.4_Ethical_Feedback_Loop"
+  },
+  "routing": [
+    {
+      "Cluster": "C0",
+      "Size": 30,
+      "Mean Rating": "3.10",
+      "Routing Decision": "\ud83d\udc41 ROUTED_TO_HUMAN",
+      "Rationale": "Borderline rating 3.10 \u2014 requires human review."
+    },
+    {
+      "Cluster": "C1",
+      "Size": 52,
+      "Mean Rating": "3.05",
+      "Routing Decision": "\ud83d\udc41 ROUTED_TO_HUMAN",
+      "Rationale": "Borderline rating 3.05 \u2014 requires human review."
+    },
+    {
+      "Cluster": "C2",
+      "Size": 8,
+      "Mean Rating": "3.11",
+      "Routing Decision": "\ud83d\udc41 ROUTED_TO_HUMAN",
+      "Rationale": "Borderline rating 3.11 \u2014 requires human review."
+    },
+    {
+      "Cluster": "C3",
+      "Size": 20,
+      "Mean Rating": "2.81",
+      "Routing Decision": "\ud83d\udc41 ROUTED_TO_HUMAN",
+      "Rationale": "Mean rating 2.81 below threshold 3.0."
+    },
+    {
+      "Cluster": "C4",
+      "Size": 90,
+      "Mean Rating": "2.97",
+      "Routing Decision": "\ud83d\udc41 ROUTED_TO_HUMAN",
+      "Rationale": "Mean rating 2.97 below threshold 3.0."
+    }
+  ]
+}
