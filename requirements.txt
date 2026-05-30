@@ -2,6 +2,7 @@ bertopic
 hdbscan
 umap-learn
 sentence-transformers>=3.0
+torch
 pandas
 pandera
 plotly
@@ -11,3 +12,5 @@ scipy
 tqdm
 emoji
 watermark
+jsonschema
+pyyaml

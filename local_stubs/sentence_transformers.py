@@ -1,7 +1,15 @@
-
 """
 Local fallback sentence_transformers using sklearn TF-IDF + TruncatedSVD.
 Used when no internet connection is available for downloading models.
+
+WARNING: The embedding space produced by this stub is fitted on the first
+corpus seen. Subsequent encode() calls on disjoint corpora trigger a refit,
+which invalidates prior embeddings — cosine similarities across calls may
+be meaningless. Acceptable for offline notebook demos; never use in
+production or cross-batch evaluation.
+
+Note: util.cos_sim() returns a numpy ndarray (not a torch Tensor). Numpy
+scalars support .item(), so evaluator.py's .item() call is compatible.
 """
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -40,7 +48,7 @@ class SentenceTransformer:
             try:
                 tfidf_matrix = self.vectorizer.transform(sentences)
                 embeddings = self.svd.transform(tfidf_matrix)
-            except Exception:
+            except (ValueError, AttributeError):
                 tfidf_matrix = self.vectorizer.fit_transform(sentences)
                 n = min(self.svd.n_components, tfidf_matrix.shape[1] - 1, tfidf_matrix.shape[0] - 1)
                 if n < 2: n = 2

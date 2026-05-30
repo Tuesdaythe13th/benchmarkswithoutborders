@@ -31,3 +31,10 @@ Thumbs.db
 /results/
 scores.csv
 clean_sample.jsonl
+
+# Large binary artifacts
+*.npy
+
+# Sensitive / stray files
+CloudManagementEnrollmentToken*
+*.docx

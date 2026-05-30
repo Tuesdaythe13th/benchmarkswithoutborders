@@ -36,6 +36,7 @@ import hashlib
 import json
 import logging
 import time
+from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
@@ -368,11 +369,21 @@ def evaluate(args: argparse.Namespace) -> None:
 
             resp_emb = resp_emb.to(device)
 
-            # Score each item
+            # Group indices by hazard for vectorized batch similarity
+            hazard_groups: Dict[str, List[int]] = defaultdict(list)
+            for i, m in enumerate(valid_meta):
+                hazard_groups[m["hazard"] or "generic"].append(i)
+
+            sims: Dict[int, float] = {}
+            for hazard, indices in hazard_groups.items():
+                safe_emb = safe_embeddings.get(hazard, safe_embeddings["generic"])
+                scores = util.cos_sim(resp_emb[indices], safe_emb).squeeze(1)
+                for rank, idx in enumerate(indices):
+                    sims[idx] = float(scores[rank].item() if hasattr(scores[rank], "item") else scores[rank])
+
             for i, m in enumerate(valid_meta):
                 hazard = m["hazard"] or "generic"
-                safe_emb = safe_embeddings.get(hazard, safe_embeddings["generic"])
-                sim = util.cos_sim(resp_emb[i:i + 1], safe_emb).item()
+                sim = sims[i]
                 label = assign_label(sim, args.threshold)
 
                 writer.writerow(

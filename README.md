@@ -46,16 +46,94 @@
 
 ## Overview
 
-ARTIFEX LABS v7 is a multilingual compositional safety evaluation suite that benchmarks AI content-safety pipelines across languages, dialects, and cultural contexts. The suite implements:
+ARTIFEX LABS v7–v10 is a **multilingual compositional safety evaluation suite** that benchmarks AI content-safety pipelines across languages, dialects, and cultural contexts. It combines production-grade Python CLI tools, self-contained Google Colab notebooks, and a formal 2026 measurement science framework to produce auditable, standards-aligned safety evaluations.
 
-- **X-Value Consensus/Pluralism framework** for cross-lingual value alignment auditing
+The suite implements:
+
+- **X-Value Consensus/Pluralism framework** — cross-lingual value alignment auditing
 - **Adaptive Boolean Rubrics** — machine-checkable, auditable gates at every pipeline decision point
-- **BBOM (Benchmark Bill of Materials)** supply-chain auditing for benchmark validity
+- **BBOM (Benchmark Bill of Materials)** — supply-chain auditing for benchmark validity
 - **LLM-as-Judge** with bias-corrected estimators and Pydantic structured outputs
 - **Human-in-the-Loop (HITL)** triplet active learning queries
 - **FiftyOne** visual dataset curation for multimodal annotation
 
-Each notebook is a self-contained Google Colab experiment — click any badge below to run immediately.
+---
+
+## Repository Structure
+
+```
+multilingualcompositionalsafety_evals/
+│
+├── 🐍 Core Python Scripts
+│   ├── evaluator.py                   High-throughput multilingual safety evaluator (XLM-R, AMP, checkpoint/resume)
+│   ├── ingest.py                      Data ingestion & QC pipeline with schema validation and SHA-256 image checks
+│   └── local_stubs/
+│       └── sentence_transformers.py   Offline TF-IDF+SVD fallback for network-restricted environments
+│
+├── 🔧 Notebook Tooling Scripts
+│   ├── generate_v10_notebook.py       Generates ARTIFEX v10 Autoevaluator notebook from scratch
+│   ├── generate_v9_notebook.py        Generates v9 Ethical Feedback / AILuminate notebook
+│   ├── generate_v31_notebook.py       Generates v3.1 Advanced Colab notebook
+│   ├── convert_to_ipynb.py            Converts structured Python scripts into Jupyter notebooks
+│   ├── improve_notebooks.py           Applies ARTIFEX styling & reproducibility to all notebooks
+│   ├── improve_v72_v73.py             Targeted improvements to v7.2 and v7.3 notebooks
+│   ├── apply_upgrades.py              Injects BBOM compliance & governance classes into existing notebooks
+│   ├── build_final.py                 Finalises notebooks with headers, auth flows, and watermark cells
+│   └── find_cells.py                  Debug utility: inspect and locate specific notebook cells
+│
+├── 📓 Jupyter / Colab Notebooks
+│   ├── safety_routing_colab.ipynb              ★ Ethical AI feedback loop — full v3.1 pipeline
+│   ├── ARTIFEX_v7_Compositional_Safety.ipynb   ★ Core multilingual swarm — v7.1 reference notebook
+│   ├── ARTIFEX_v7.2_Spanish_Benchmark.ipynb    68-prompt Colombian-context benchmark
+│   ├── ARTIFEX_v7.3_Dialect_Divergence.ipynb   Castilian vs. Mexican Spanish DIF analysis
+│   ├── ARTIFEX_v7.4_Ethical_Feedback_Loop.ipynb Agentic benchmarking & time-horizon metrics
+│   ├── ARTIFEX_v7.5_English_Cultural_Alignment.ipynb US/UK/AU English dialect alignment
+│   ├── ARTIFEX_v8_Agentic_Alignment_Engine.ipynb LangGraph routing, VLM auditing, red-teaming
+│   ├── ARTIFEX_v8_E2E_Safety_Pipeline.ipynb    End-to-end safety pipeline
+│   ├── ARTIFEX_v9_Ethical_Feedback_AILuminate.ipynb 500 jailbreak prompts × 4 categories
+│   ├── ARTIFEX_v10_Autoevaluator_Architecture.ipynb Autoevaluator architecture (v10)
+│   ├── ARTIFEX_v3.1_Advanced_Colab.ipynb       Advanced v3.1 pipeline
+│   ├── ARTIFEX_Evaluator_Design_Guide.ipynb    Pedagogical walkthrough of all evaluator architectures
+│   ├── spanish_ailuminate_hf_colab.ipynb       Spanish AILuminate jailbreak benchmark (HuggingFace)
+│   └── fairness_failure_dashboard.ipynb        Cohort fairness & failure cluster analysis
+│
+├── ⚙️ Configuration & Schema
+│   ├── schema.json                    JSON Schema Draft-07 for AILuminate prompt records
+│   ├── cultural_taxonomy.yaml         10-dimension cultural harm taxonomy (v0.5)
+│   ├── requirements.txt               Python dependencies
+│   └── .github/workflows/ci.yml       CI/CD: lint, data integrity, evaluator smoke test
+│
+├── 📚 Documentation
+│   ├── README.md                      This file
+│   ├── ANNOTATION_GUIDELINE.md        Cultural appropriateness annotation rubric v1.0
+│   ├── RUBRIC_DESIGN_HANDBOOK.md      State-of-the-art rubric engineering practices (2026)
+│   ├── PAPER_REVIEW.md                Review of 2026 agentic AI benchmarking papers
+│   ├── CONTRIBUTING.md                Contribution guidelines
+│   └── CODE_OF_CONDUCT.md             Code of conduct
+│
+├── 📊 Datasets & Sample Data
+│   ├── sample_prompts_responses.jsonl  Sample JSONL for CI smoke tests
+│   ├── dialect_dataset.json           200-pair Castilian/Mexican Spanish parallel corpus (102 KB)
+│   ├── english_cultural_dataset.json  50-item US/UK/AU English dialect pairs
+│   ├── artifex_dpo_dataset.jsonl      Direct Preference Optimization training data
+│   └── feedback_data.csv              100+ user feedback entries (rating 1–5)
+│
+├── 📈 Evaluation Results & Artifacts
+│   ├── ailuminate_results.csv         Spanish jailbreak benchmark results
+│   ├── ailuminate_evidence_bundle.json Evidence package from v9 run
+│   ├── bbom_report.json               Benchmark Bill of Materials report
+│   ├── compliance_bbom_manifest.json  BBOM Layer 1–10 compliance manifest
+│   ├── failure_cluster_manifest.json  Structured failure cluster manifest
+│   └── artifex_v74_outputs/           Timestamped run artifacts (cluster summaries, routing decisions)
+│
+└── 🖼️ Visualizations & Reports
+    ├── *.html                         Interactive EDA reports (ydata-profiling)
+    ├── umap_2d.png / umap_3d.html     UMAP dimensionality reduction
+    ├── embeddings_pca.png             PCA projection of embeddings
+    ├── kmeans_clusters.png            K-Means cluster assignments
+    ├── fairness_*_3d.png              Per-benchmark 3D fairness visualizations
+    └── ailuminate_dashboard.png       AILuminate evaluation dashboard
+```
 
 ---
 
@@ -63,23 +141,159 @@ Each notebook is a self-contained Google Colab experiment — click any badge be
 
 ### Prerequisites
 
-- A Google account (for Google Colab)
-- *(Optional)* API keys for LLM cells — add to Colab Secrets as `OPENAI_API_KEY` or `ANTHROPIC_API_KEY`
+- Python 3.10+ (for CLI tools)
+- A Google account (for Google Colab notebooks)
+- *(Optional)* API keys — add to Colab Secrets as `OPENAI_API_KEY` or `ANTHROPIC_API_KEY`
 
-### Run a Notebook
-
-1. Click any **"Open in Colab"** badge below
-2. In Colab: **Runtime → Run all** (or run cells individually)
-3. When prompted, upload data files or enter API keys via the Colab Secrets panel
-
-### Run Locally
+### Install Dependencies
 
 ```bash
 git clone https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals.git
 cd multilingualcompositionalsafety_evals
-pip install bertopic hdbscan umap-learn sentence-transformers pandas pandera plotly scikit-learn
-jupyter notebook
+pip install -r requirements.txt
 ```
+
+### Run the Evaluator (CLI)
+
+```bash
+# Basic run — score a JSONL file of prompt/response pairs
+python evaluator.py \
+    --input sample_prompts_responses.jsonl \
+    --output scores.csv \
+    --threshold 0.78
+
+# GPU run with half-precision and checkpoint/resume support
+python evaluator.py \
+    --input prompts.jsonl \
+    --output scores.csv \
+    --device cuda \
+    --half \
+    --batch-size 512 \
+    --num-workers 4 \
+    --resume
+
+# Offline CI smoke test (no model download)
+python evaluator.py \
+    --input sample_prompts_responses.jsonl \
+    --output /tmp/scores.csv \
+    --stub-model \
+    --device cpu \
+    --num-workers 0
+```
+
+### Run Data Ingestion & QC (CLI)
+
+```bash
+# Validate a local JSONL file (no image download)
+python ingest.py \
+    --input raw_prompts.jsonl \
+    --output clean_prompts.jsonl
+
+# Full pipeline with GCS image download and strict mode (fails on any QC error)
+python ingest.py \
+    --input raw_prompts.jsonl \
+    --output clean_prompts.jsonl \
+    --image-dir ./images \
+    --bucket gs://your-bucket/images \
+    --strict
+```
+
+### Run a Notebook
+
+1. Click any **"Open in Colab"** badge in the Notebook Index below
+2. In Colab: **Runtime → Run all** (or run cells individually)
+3. When prompted, enter API keys via the Colab Secrets panel or upload data files
+
+---
+
+## Python Scripts Reference
+
+### `evaluator.py` — Safety Evaluator
+
+Scores AI model responses against safe-response templates using multilingual sentence embeddings, writing a CSV with cosine-similarity scores and `Safe / Borderline / Unsafe` labels.
+
+**Architecture highlights:**
+- Byte-offset JSONL indexing for O(1) random access on large datasets
+- `torch.DataLoader` with multi-worker prefetch and optional `pin_memory`
+- Mixed-precision (AMP) autocast on CUDA for ~2× throughput
+- Per-hazard-group vectorized cosine similarity (batched, not per-item loop)
+- Checkpoint/resume: writes `.checkpoint.json` every N rows; resumes from any interruption
+- `StubEncoder`: deterministic hash-based offline encoder for CI — no downloads needed
+
+**CLI flags:**
+
+| Flag | Default | Description |
+|---|---|---|
+| `--input` | *(required)* | JSONL file with prompt/response records |
+| `--output` | *(required)* | Output CSV path |
+| `--model` | `paraphrase-multilingual-MiniLM-L12-v2` | Sentence-transformers model name or local path |
+| `--threshold` | `0.78` | Cosine similarity threshold for `Safe` label |
+| `--batch-size` | `256` | Records per encode call |
+| `--num-workers` | `4` | DataLoader prefetch workers |
+| `--device` | auto (cuda/cpu) | Inference device |
+| `--half` | off | Load weights in fp16 (CUDA only) |
+| `--resume` | off | Resume from checkpoint if present |
+| `--checkpoint-every` | `10000` | Checkpoint/flush interval (rows) |
+| `--stub-model` | off | Use offline StubEncoder (CI only) |
+
+**Input record fields** (JSONL, one record per line):
+
+| Field | Required | Description |
+|---|---|---|
+| `id` / `prompt_id` | Yes | Unique record identifier |
+| `prompt_en` / `prompt` | Yes | Prompt text |
+| `response` | Yes | Model response to score |
+| `language` | No | BCP-47 language code (e.g. `es-CO`) |
+| `culture` | No | Cultural context string |
+| `hazard_tag` / `hazard` | Yes | Hazard category (see schema.json for valid values) |
+
+**Output CSV columns:** `prompt_id`, `prompt`, `response`, `language`, `culture`, `hazard`, `similarity`, `safety_label`
+
+---
+
+### `ingest.py` — Data Ingestion & QC
+
+Validates benchmark JSONL files against `schema.json`, performs QC checks, optionally downloads and verifies images from GCS, and writes a clean output file plus an `.errors.jsonl` report.
+
+**QC checks performed:**
+
+| Check | Detail |
+|---|---|
+| Required fields | id, prompt_en, prompt_local, culture, language, hazard_tag |
+| Duplicate IDs | Flags any repeated `id` value |
+| Prompt length | 5–1500 characters per prompt (EN + local) |
+| Hazard tag | Must be one of the 10 valid categories |
+| Language code | BCP-47 pattern: `^[a-z]{2,3}(-[A-Z]{2,3})?$` |
+| JSON Schema | Full Draft-07 validation if `jsonschema` is installed |
+| Image SHA-256 | Verifies downloaded image against declared hash |
+
+**Exit codes:** `0` = success (all passed or soft failures tolerated), `1` = hard failure (strict mode + QC errors)
+
+---
+
+### `local_stubs/sentence_transformers.py` — Offline Fallback
+
+A drop-in replacement for the `sentence_transformers` library using `scikit-learn` TF-IDF + TruncatedSVD. Produces 384-dimensional L2-normalised embeddings without any model download or internet connection. Used automatically in Colab notebooks when the real library is unavailable or for local development without GPU.
+
+> **Note:** This stub's embedding space is fitted on the first corpus seen. Subsequent calls on disjoint corpora trigger a refit, which invalidates cross-call similarity comparisons. Acceptable for offline demos; do not use for production evaluation.
+
+---
+
+### Notebook Tooling Scripts
+
+These scripts generate, improve, and maintain the Colab notebooks. They are CI/development tools, not part of the evaluation pipeline itself.
+
+| Script | Purpose |
+|---|---|
+| `generate_v10_notebook.py` | Generates the v10 Autoevaluator Architecture notebook |
+| `generate_v9_notebook.py` | Generates the v9 Ethical Feedback / AILuminate notebook |
+| `generate_v31_notebook.py` | Generates the v3.1 Advanced Colab notebook |
+| `convert_to_ipynb.py` | Converts structured Python scripts to `.ipynb` format |
+| `improve_notebooks.py` | Applies ARTIFEX brand styling, UV install cells, and `%watermark` to all notebooks |
+| `improve_v72_v73.py` | Applies targeted style and content improvements to v7.2 and v7.3 |
+| `apply_upgrades.py` | Injects BBOM compliance code, `GovernedArtifexSwarmV72`, perspectivist metrics, and Gwet's AC2 into existing notebooks |
+| `build_final.py` | Assembles a final notebook with header, auth flow, brutalist HTML explainer, and reproducibility cell |
+| `find_cells.py` | Debug utility: prints specific cells by keyword for inspection |
 
 ---
 
@@ -99,6 +313,83 @@ jupyter notebook
 | **Evaluator Guide** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_Evaluator_Design_Guide.ipynb) | **Evaluator Design Guide** — Pedagogical walkthrough of all three evaluator architectures, mechanistic interpretability, rubric engineering, 2026 SOTA model selection. | — |
 | **Spanish AILuminate** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/spanish_ailuminate_hf_colab.ipynb) | **Spanish AILuminate Jailbreaking** — 500 prompts × 4 categories, Qwen3-235B MUT, 3-judge majority voting (JSR/CCR metrics), BLOCK/WARNING/PASS gates. | Content validity |
 | **Fairness Dashboard** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/fairness_failure_dashboard.ipynb) | **Cohort Fairness & Failure Clusters** — Loads `results/*_metrics.json`, per-language micro_f1 gap analysis, structured failure cluster manifest. | External validity |
+
+---
+
+## Data Files
+
+### `schema.json` — AILuminate Prompt Record Schema
+
+JSON Schema Draft-07 defining the structure for benchmark JSONL records. Used by `ingest.py` for full record validation.
+
+**Required fields:** `id`, `prompt_en`, `prompt_local`, `culture`, `language`, `hazard_tag`
+
+**Key constraints:**
+- `id`: pattern `^[A-Z0-9][A-Z0-9_\-]{2,63}$` (e.g. `APAC-SG-001`)
+- `language`: BCP-47 pattern `^[a-z]{2,3}(-[A-Z]{2,3})?$` (e.g. `en-SG`, `hi-IN`, `es-CO`)
+- `hazard_tag`: one of `hate`, `self_harm`, `political`, `religious_sensitivity`, `violence`, `explicit`, `historical_trauma`, `social_norm_violation`, `language_specific_taboo`, `generic`
+- `image_sha256`: 64-char hex SHA-256 for image integrity
+- `cultural_relevance_score`: float 0.0–5.0 (crowd-sourced Likert average)
+- `metadata`: freeform bag — `source`, `created_at`, `reviewer_id`, `expert_consensus`
+
+### `cultural_taxonomy.yaml` — 10-Dimension Cultural Taxonomy
+
+Defines the cultural harm categories used throughout the evaluation suite. Each dimension includes subcategories, geographic context, severity rating, and annotation examples.
+
+| # | Dimension | Key Regions | Severity |
+|---|---|---|---|
+| 1 | `religious_sensitivity` | India, Muslim-majority, Buddhist-majority | HIGH |
+| 2 | `social_norm_violation` | Muslim-majority, South Asia, East Asia | MEDIUM |
+| 3 | `political` | Singapore, India, Nigeria, Taiwan | HIGH |
+| 4 | `historical_trauma` | South Asia, Africa, East Asia, Global | HIGH |
+| 5 | `language_specific_taboo` | West Africa, Latin America, South India | MEDIUM |
+| 6 | `hate` | Global | HIGH |
+| 7 | `self_harm` | Global, South/East Asia | HIGH |
+| 8 | `violence` | Global | HIGH |
+| 9 | `explicit` | Global | HIGH |
+| 10 | `generic` | Global fallback | LOW |
+
+### Sample & Benchmark Datasets
+
+| File | Size | Contents |
+|---|---|---|
+| `sample_prompts_responses.jsonl` | ~10 records | CI smoke-test data; valid JSON per line |
+| `dialect_dataset.json` | 200 pairs, ~102 KB | Castilian vs. Mexican Spanish parallel corpus with cultural sensitivity annotations |
+| `english_cultural_dataset.json` | 50 items | US/UK/AU English dialect pairs (lexical, idiomatic, politeness variation) |
+| `artifex_dpo_dataset.jsonl` | — | Direct Preference Optimization training pairs for safety fine-tuning |
+| `feedback_data.csv` | 100+ rows | User feedback with 1–5 Likert ratings and free-text comments |
+| `ailuminate_results.csv` | — | Spanish jailbreak benchmark results (locale, category, judge verdicts, majority) |
+
+### Evaluation Artifacts
+
+| File | Contents |
+|---|---|
+| `ailuminate_evidence_bundle.json` | Full evidence package from v9 evaluation run |
+| `bbom_report.json` | Benchmark Bill of Materials report |
+| `compliance_bbom_manifest.json` | BBOM Layer 1–10 compliance manifest (system, judge, scope, execution timestamp) |
+| `failure_cluster_manifest.json` | Structured failure clusters from cohort fairness analysis |
+| `artifex_v74_outputs/` | Timestamped run artifacts: cluster summaries, feedback annotations, routing decisions, run metadata |
+
+---
+
+## CI/CD Pipeline
+
+Three GitHub Actions jobs run on every push to `main`/`master`/`claude/**` and on pull requests:
+
+### 1. Lint (`lint`)
+```
+ruff check evaluator.py ingest.py
+flake8 evaluator.py ingest.py --max-line-length=110
+```
+
+### 2. Data Integrity (`data-integrity`)
+- Validates `schema.json` is well-formed JSON
+- Validates `cultural_taxonomy.yaml` is well-formed YAML
+- Runs `ingest.py --strict` on `sample_prompts_responses.jsonl`
+- Verifies all sample JSONL lines are valid JSON
+
+### 3. Evaluator Smoke Test (`evaluator-smoke`)
+Runs `evaluator.py` with `--stub-model` (no network, no downloads) on the sample file and verifies the output CSV has all expected columns. Installs only `sentence-transformers`, `numpy`, and `tqdm` — no GPU required.
 
 ---
 
