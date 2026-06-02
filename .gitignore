@@ -38,3 +38,6 @@ clean_sample.jsonl
 # Sensitive / stray files
 CloudManagementEnrollmentToken*
 *.docx
+
+# Claude Code internal worktrees
+.claude/
