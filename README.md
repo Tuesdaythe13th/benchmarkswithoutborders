@@ -41,24 +41,7 @@ The suite implements:
 ```
 multilingualcompositionalsafety_evals/
 │
-├── 🐍 Core Python Scripts
-│   ├── evaluator.py                   High-throughput multilingual safety evaluator (XLM-R, AMP, checkpoint/resume)
-│   ├── ingest.py                      Data ingestion & QC pipeline with schema validation and SHA-256 image checks
-│   └── local_stubs/
-│       └── sentence_transformers.py   Offline TF-IDF+SVD fallback for network-restricted environments
-│
-├── 🔧 Notebook Tooling Scripts
-│   ├── generate_v10_notebook.py       Generates ARTIFEX v10 Autoevaluator notebook from scratch
-│   ├── generate_v9_notebook.py        Generates v9 Ethical Feedback / AILuminate notebook
-│   ├── generate_v31_notebook.py       Generates v3.1 Advanced Colab notebook
-│   ├── convert_to_ipynb.py            Converts structured Python scripts into Jupyter notebooks
-│   ├── improve_notebooks.py           Applies ARTIFEX styling & reproducibility to all notebooks
-│   ├── improve_v72_v73.py             Targeted improvements to v7.2 and v7.3 notebooks
-│   ├── apply_upgrades.py              Injects BBOM compliance & governance classes into existing notebooks
-│   ├── build_final.py                 Finalises notebooks with headers, auth flows, and watermark cells
-│   └── find_cells.py                  Debug utility: inspect and locate specific notebook cells
-│
-├── 📓 Jupyter / Colab Notebooks
+├── 📁 notebooks/                       Jupyter / Colab Notebooks
 │   ├── safety_routing_colab.ipynb              ★ Ethical AI feedback loop — full v3.1 pipeline
 │   ├── ARTIFEX_v7_Compositional_Safety.ipynb   ★ Core multilingual swarm — v7.1 reference notebook
 │   ├── ARTIFEX_v7.2_Spanish_Benchmark.ipynb    68-prompt Colombian-context benchmark
@@ -74,28 +57,33 @@ multilingualcompositionalsafety_evals/
 │   ├── spanish_ailuminate_hf_colab.ipynb       Spanish AILuminate jailbreak benchmark (HuggingFace)
 │   └── fairness_failure_dashboard.ipynb        Cohort fairness & failure cluster analysis
 │
-├── ⚙️ Configuration & Schema
+├── 📁 scripts/                         🐍 Core Python Scripts & Notebook Tools
+│   ├── evaluator.py                   High-throughput multilingual safety evaluator (XLM-R, AMP, checkpoint/resume)
+│   ├── ingest.py                      Data ingestion & QC pipeline with schema validation and SHA-256 image checks
+│   ├── generate_v10_notebook.py       Generates ARTIFEX v10 Autoevaluator notebook from scratch
+│   ├── generate_v9_notebook.py        Generates v9 Ethical Feedback / AILuminate notebook
+│   ├── generate_v31_notebook.py       Generates v3.1 Advanced Colab notebook
+│   ├── convert_to_ipynb.py            Converts structured Python scripts into Jupyter notebooks
+│   ├── improve_notebooks.py           Applies ARTIFEX styling & reproducibility to all notebooks
+│   ├── improve_v72_v73.py             Targeted improvements to v7.2 and v7.3 notebooks
+│   ├── apply_upgrades.py              Injects BBOM compliance & governance classes into existing notebooks
+│   ├── build_final.py                 Finalises notebooks with headers, auth flows, and watermark cells
+│   ├── find_cells.py                  Debug utility: inspect and locate specific notebook cells
+│   └── local_stubs/
+│       └── sentence_transformers.py   Offline TF-IDF+SVD fallback for network-restricted environments
+│
+├── 📁 config/                          ⚙️ Configuration & Schema
 │   ├── schema.json                    JSON Schema Draft-07 for AILuminate prompt records
-│   ├── cultural_taxonomy.yaml         10-dimension cultural harm taxonomy (v0.5)
-│   ├── requirements.txt               Python dependencies
-│   └── .github/workflows/ci.yml       CI/CD: lint, data integrity, evaluator smoke test
+│   └── cultural_taxonomy.yaml         10-dimension cultural harm taxonomy (v0.5)
 │
-├── 📚 Documentation
-│   ├── README.md                      This file
-│   ├── ANNOTATION_GUIDELINE.md        Cultural appropriateness annotation rubric v1.0
-│   ├── RUBRIC_DESIGN_HANDBOOK.md      State-of-the-art rubric engineering practices (2026)
-│   ├── PAPER_REVIEW.md                Review of 2026 agentic AI benchmarking papers
-│   ├── CONTRIBUTING.md                Contribution guidelines
-│   └── CODE_OF_CONDUCT.md             Code of conduct
-│
-├── 📊 Datasets & Sample Data
+├── 📁 data/                            📊 Datasets & Sample Data
 │   ├── sample_prompts_responses.jsonl  Sample JSONL for CI smoke tests
 │   ├── dialect_dataset.json           200-pair Castilian/Mexican Spanish parallel corpus (102 KB)
 │   ├── english_cultural_dataset.json  50-item US/UK/AU English dialect pairs
 │   ├── artifex_dpo_dataset.jsonl      Direct Preference Optimization training data
 │   └── feedback_data.csv              100+ user feedback entries (rating 1–5)
 │
-├── 📈 Evaluation Results & Artifacts
+├── 📁 results/                         📈 Evaluation Results & Artifacts
 │   ├── ailuminate_results.csv         Spanish jailbreak benchmark results
 │   ├── ailuminate_evidence_bundle.json Evidence package from v9 run
 │   ├── bbom_report.json               Benchmark Bill of Materials report
@@ -103,13 +91,20 @@ multilingualcompositionalsafety_evals/
 │   ├── failure_cluster_manifest.json  Structured failure cluster manifest
 │   └── artifex_v74_outputs/           Timestamped run artifacts (cluster summaries, routing decisions)
 │
-└── 🖼️ Visualizations & Reports
-    ├── *.html                         Interactive EDA reports (ydata-profiling)
-    ├── umap_2d.png / umap_3d.html     UMAP dimensionality reduction
-    ├── embeddings_pca.png             PCA projection of embeddings
-    ├── kmeans_clusters.png            K-Means cluster assignments
-    ├── fairness_*_3d.png              Per-benchmark 3D fairness visualizations
-    └── ailuminate_dashboard.png       AILuminate evaluation dashboard
+├── 📁 visualizations/                  🖼️ Visualizations & Reports
+│   ├── *.html                         Interactive EDA reports (ydata-profiling)
+│   ├── umap_2d.png / umap_3d.html     UMAP dimensionality reduction
+│   ├── embeddings_pca.png             PCA projection of embeddings
+│   ├── kmeans_clusters.png            K-Means cluster assignments
+│   ├── fairness_*_3d.png              Per-benchmark 3D fairness visualizations
+│   └── ailuminate_dashboard.png       AILuminate evaluation dashboard
+│
+└── 📁 docs/                            📚 Documentation
+    ├── ANNOTATION_GUIDELINE.md        Cultural appropriateness annotation rubric v1.0
+    ├── RUBRIC_DESIGN_HANDBOOK.md      State-of-the-art rubric engineering practices (2026)
+    ├── PAPER_REVIEW.md                Review of 2026 agentic AI benchmarking papers
+    ├── CONTRIBUTING.md                Contribution guidelines
+    └── CODE_OF_CONDUCT.md             Code of conduct
 ```
 
 ---
@@ -134,14 +129,14 @@ pip install -r requirements.txt
 
 ```bash
 # Basic run — score a JSONL file of prompt/response pairs
-python evaluator.py \
-    --input sample_prompts_responses.jsonl \
+python scripts/evaluator.py \
+    --input data/sample_prompts_responses.jsonl \
     --output scores.csv \
     --threshold 0.78
 
 # GPU run with half-precision and checkpoint/resume support
-python evaluator.py \
-    --input prompts.jsonl \
+python scripts/evaluator.py \
+    --input data/sample_prompts_responses.jsonl \
     --output scores.csv \
     --device cuda \
     --half \
@@ -150,8 +145,8 @@ python evaluator.py \
     --resume
 
 # Offline CI smoke test (no model download)
-python evaluator.py \
-    --input sample_prompts_responses.jsonl \
+python scripts/evaluator.py \
+    --input data/sample_prompts_responses.jsonl \
     --output /tmp/scores.csv \
     --stub-model \
     --device cpu \
@@ -162,13 +157,13 @@ python evaluator.py \
 
 ```bash
 # Validate a local JSONL file (no image download)
-python ingest.py \
-    --input raw_prompts.jsonl \
+python scripts/ingest.py \
+    --input data/sample_prompts_responses.jsonl \
     --output clean_prompts.jsonl
 
 # Full pipeline with GCS image download and strict mode (fails on any QC error)
-python ingest.py \
-    --input raw_prompts.jsonl \
+python scripts/ingest.py \
+    --input data/sample_prompts_responses.jsonl \
     --output clean_prompts.jsonl \
     --image-dir ./images \
     --bucket gs://your-bucket/images \

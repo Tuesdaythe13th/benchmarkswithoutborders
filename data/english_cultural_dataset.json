@@ -1,0 +1,302 @@
+[
+  {
+    "id": "EN-001",
+    "prompt": "What do you call the trunk of a car?",
+    "US": "trunk",
+    "UK": "boot",
+    "AU": "boot",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-002",
+    "prompt": "How do you spell the color grey/gray?",
+    "US": "gray",
+    "UK": "grey",
+    "AU": "grey",
+    "dimension": "spelling",
+    "domain": "Orthography",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-003",
+    "prompt": "What's the best way to ask for a restroom?",
+    "US": "Excuse me, where is the restroom?",
+    "UK": "Excuse me, where is the toilet?",
+    "AU": "Excuse me, where's the loo?",
+    "dimension": "politeness",
+    "domain": "Social Etiquette",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-004",
+    "prompt": "What do you call a sweet fizzy drink?",
+    "US": "soda",
+    "UK": "fizzy drink",
+    "AU": "soft drink",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-005",
+    "prompt": "How do you refer to a group of people informally?",
+    "US": "you guys",
+    "UK": "you lot",
+    "AU": "you mob",
+    "dimension": "idiom",
+    "domain": "Social Language",
+    "difficulty": "hard"
+  },
+  {
+    "id": "EN-006",
+    "prompt": "What do you call the front of a car?",
+    "US": "hood",
+    "UK": "bonnet",
+    "AU": "bonnet",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-007",
+    "prompt": "How do you express thanks casually?",
+    "US": "Thanks!",
+    "UK": "Cheers!",
+    "AU": "Ta!",
+    "dimension": "politeness",
+    "domain": "Social Etiquette",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-008",
+    "prompt": "What do you call a small apartment?",
+    "US": "apartment",
+    "UK": "flat",
+    "AU": "flat",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-009",
+    "prompt": "How do you ask for the check at a restaurant?",
+    "US": "Can I have the check, please?",
+    "UK": "Can I have the bill, please?",
+    "AU": "Can I have the bill, please?",
+    "dimension": "politeness",
+    "domain": "Social Etiquette",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-010",
+    "prompt": "What do you call the season between summer and winter?",
+    "US": "fall",
+    "UK": "autumn",
+    "AU": "autumn",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-011",
+    "prompt": "How do you spell 'favourite' or 'favorite'?",
+    "US": "favorite",
+    "UK": "favourite",
+    "AU": "favourite",
+    "dimension": "spelling",
+    "domain": "Orthography",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-012",
+    "prompt": "What do you call a line of people waiting?",
+    "US": "line",
+    "UK": "queue",
+    "AU": "queue",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-013",
+    "prompt": "How do you refer to french fries?",
+    "US": "fries",
+    "UK": "chips",
+    "AU": "chips",
+    "dimension": "lexical",
+    "domain": "Food & Drink",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-014",
+    "prompt": "What do you call a vacation from work?",
+    "US": "vacation",
+    "UK": "holiday",
+    "AU": "holiday",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-015",
+    "prompt": "How do you greet someone you haven't seen in a while?",
+    "US": "Hey, long time no see! How have you been?",
+    "UK": "Hiya! It's been ages, hasn't it?",
+    "AU": "G'day! Haven't seen you in donkey's years!",
+    "dimension": "idiom",
+    "domain": "Social Language",
+    "difficulty": "hard"
+  },
+  {
+    "id": "EN-016",
+    "prompt": "What do you call the sidewalk?",
+    "US": "sidewalk",
+    "UK": "pavement",
+    "AU": "footpath",
+    "dimension": "lexical",
+    "domain": "Infrastructure",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-017",
+    "prompt": "How do you spell 'organize' or 'organise'?",
+    "US": "organize",
+    "UK": "organise",
+    "AU": "organise",
+    "dimension": "spelling",
+    "domain": "Orthography",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-018",
+    "prompt": "What do you call a pharmacist's shop?",
+    "US": "pharmacy",
+    "UK": "chemist",
+    "AU": "chemist",
+    "dimension": "lexical",
+    "domain": "Institutional",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-019",
+    "prompt": "How do you say someone is being lazy or avoiding work?",
+    "US": "He's slacking off.",
+    "UK": "He's skiving off.",
+    "AU": "He's bludging.",
+    "dimension": "idiom",
+    "domain": "Social Language",
+    "difficulty": "hard"
+  },
+  {
+    "id": "EN-020",
+    "prompt": "How would you describe something excellent?",
+    "US": "That's awesome!",
+    "UK": "That's brilliant!",
+    "AU": "That's bonzer!",
+    "dimension": "idiom",
+    "domain": "Social Language",
+    "difficulty": "hard"
+  },
+  {
+    "id": "EN-021",
+    "prompt": "What do you call a baby's diaper?",
+    "US": "diaper",
+    "UK": "nappy",
+    "AU": "nappy",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-022",
+    "prompt": "What do you call an elevator?",
+    "US": "elevator",
+    "UK": "lift",
+    "AU": "lift",
+    "dimension": "lexical",
+    "domain": "Infrastructure",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-023",
+    "prompt": "How do you spell 'centre' or 'center'?",
+    "US": "center",
+    "UK": "centre",
+    "AU": "centre",
+    "dimension": "spelling",
+    "domain": "Orthography",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-024",
+    "prompt": "What do you call a truck?",
+    "US": "truck",
+    "UK": "lorry",
+    "AU": "truck",
+    "dimension": "lexical",
+    "domain": "Transport",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-025",
+    "prompt": "How do you politely decline an invitation?",
+    "US": "I appreciate the invite, but I have other plans.",
+    "UK": "That's very kind, but I'm afraid I can't make it.",
+    "AU": "No worries, but I've got something on that day.",
+    "dimension": "politeness",
+    "domain": "Social Etiquette",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-026",
+    "prompt": "What do you call a cookie?",
+    "US": "cookie",
+    "UK": "biscuit",
+    "AU": "biccy",
+    "dimension": "lexical",
+    "domain": "Food & Drink",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-027",
+    "prompt": "What do you call the hood of a jacket?",
+    "US": "hoodie",
+    "UK": "hoodie",
+    "AU": "hoodie",
+    "dimension": "lexical",
+    "domain": "Clothing",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-028",
+    "prompt": "How do you refer to a gas station?",
+    "US": "gas station",
+    "UK": "petrol station",
+    "AU": "servo",
+    "dimension": "lexical",
+    "domain": "Infrastructure",
+    "difficulty": "medium"
+  },
+  {
+    "id": "EN-029",
+    "prompt": "What do you call a flashlight?",
+    "US": "flashlight",
+    "UK": "torch",
+    "AU": "torch",
+    "dimension": "lexical",
+    "domain": "Everyday Language",
+    "difficulty": "easy"
+  },
+  {
+    "id": "EN-030",
+    "prompt": "How do you express mild surprise or disbelief?",
+    "US": "No way!",
+    "UK": "Blimey!",
+    "AU": "Crikey!",
+    "dimension": "idiom",
+    "domain": "Social Language",
+    "difficulty": "hard"
+  }
+]

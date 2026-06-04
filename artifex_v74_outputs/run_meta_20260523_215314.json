@@ -1,9 +1,0 @@
-{
-  "run_timestamp": "20260523_215314",
-  "embed_model": "paraphrase-multilingual-MiniLM-L12-v2",
-  "n_clusters": 5,
-  "random_seed": 42,
-  "llm_provider": "gemini",
-  "n_rows": 200,
-  "notebook": "ARTIFEX_v7.4_Ethical_Feedback_Loop"
-}
