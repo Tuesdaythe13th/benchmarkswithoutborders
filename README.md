@@ -1,17 +1,10 @@
 ```
- █████╗ ██████╗ ████████╗██╗███████╗███████╗██╗  ██╗    ██╗      █████╗ ██████╗ ███████╗
-██╔══██╗██╔══██╗╚══██╔══╝██║██╔════╝██╔════╝╚██╗██╔╝    ██║     ██╔══██╗██╔══██╗██╔════╝
-███████║██████╔╝   ██║   ██║█████╗  █████╗   ╚███╔╝     ██║     ███████║██████╔╝███████╗
-██╔══██║██╔══██╗   ██║   ██║██╔══╝  ██╔══╝   ██╔██╗     ██║     ██╔══██║██╔══██╗╚════██║
-██║  ██║██║  ██║   ██║   ██║██║     ███████╗██╔╝ ██╗    ███████╗██║  ██║██████╔╝███████║
-╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝    ╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝
-
-        ██╗   ██╗███████╗    ███████╗ █████╗ ███████╗███████╗████████╗██╗   ██╗
-        ██║   ██║╚════██║    ██╔════╝██╔══██╗██╔════╝██╔════╝╚══██╔══╝╚██╗ ██╔╝
-        ██║   ██║    ██╔╝    ███████╗███████║█████╗  █████╗     ██║    ╚████╔╝
-        ╚██╗ ██╔╝   ██╔╝     ╚════██║██╔══██║██╔══╝  ██╔══╝     ██║     ╚██╔╝
-         ╚████╔╝    ██║      ███████║██║  ██║██║     ███████╗   ██║      ██║
-          ╚═══╝     ╚═╝      ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝   ╚═╝      ╚═╝
+██╗     ██╗  ██╗██████╗ ██╗   ██╗██████╗   ██╗███╗   ██╗████████╗██╗  ██╗
+██║     ██║  ██║██╔══██╗╚██╗ ██╔╝██╔══██╗ ███║████╗  ██║╚══██╔══╝██║  ██║
+██║     ███████║██████╔╝ ╚████╔╝ ██████╔╝ ╚██║██╔██╗ ██║   ██║   ███████║
+██║     ╚════██║██╔══██╗  ╚██╔╝  ██╔══██╗  ██║██║╚██╗██║   ██║   ██╔══██║
+███████╗     ██║██████╔╝   ██║   ██║  ██║  ██║██║ ╚████║   ██║   ██║  ██║
+╚══════╝     ╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝
 
   ╔══════════════════════════════════════════════════════════════════════════════╗
   ║  COMPOSITIONAL SAFETY  ·  CROSS-LINGUAL VALUES  ·  ADAPTIVE BOOL RUBRICS   ║
@@ -19,20 +12,66 @@
   ║  IRT-CALIBRATED BENCHMARKS  ·  NIST AI 800-3  ·  ISO/IEC 42119             ║
   ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
+
+# L4BYR1NTH: ARTIFEX Safety Evals
+**Principal Investigator**: Tuesday, ARTIFEX Labs
+
 ---
 
-## Overview
+## About L4BYR1NTH & Core Pillars
 
-ARTIFEX LABS v7–v10 is a **multilingual compositional safety evaluation suite** that benchmarks AI content-safety pipelines across languages, dialects, and cultural contexts. It combines production-grade Python CLI tools, self-contained Google Colab notebooks, and a formal 2026 measurement science framework to produce auditable, standards-aligned safety evaluations.
+**L4BYR1NTH** is a next-generation **multilingual compositional safety evaluation suite** engineered to benchmark, analyze, and audit safety filters, routing mechanisms, and alignment boundaries in frontier AI systems. Built to implement the formal **2026 Measurement Science Framework**, L4BYR1NTH resolves the critical **"Validity Sinkhole"** and safeguards benchmarks against rapid saturation and decay (**Goodhart's Law**).
 
-The suite implements:
+The architecture is structured around five core pillars:
 
-- **X-Value Consensus/Pluralism framework** — cross-lingual value alignment auditing
-- **Adaptive Boolean Rubrics** — machine-checkable, auditable gates at every pipeline decision point
-- **BBOM (Benchmark Bill of Materials)** — supply-chain auditing for benchmark validity
-- **LLM-as-Judge** with bias-corrected estimators and Pydantic structured outputs
-- **Human-in-the-Loop (HITL)** triplet active learning queries
-- **FiftyOne** visual dataset curation for multimodal annotation
+1. **Construct Validity & The "Validity Sinkhole" Resolution**
+   Standard static benchmarks suffer from rapid saturation and representation drift. L4BYR1NTH uses dynamically generated, compositional, and adversarial prompt matrices to evaluate models at their functional limits rather than matching rote templates.
+
+2. **Adaptive Policy-Based Rubrics (APBR Framework)**
+   Rather than treating safety as a simple binary scalar, L4BYR1NTH defines safety via multi-dimensional, machine-checkable boolean gates at every pipeline decision point.
+
+3. **Rubric Invariant Failure Mode (RIFT) Verification**
+   Automated detection of rubric drift, ensuring that the criteria for evaluating safety do not degrade or mutate under changing model outputs or varying prompting templates.
+
+4. **AdaRubric & Task-Adaptive Evaluation**
+   Evaluation criteria dynamically adapt based on target task contexts (e.g., institutional compliance vs. creative writing), maintaining tight scope controls and reducing false-positive rates.
+
+5. **X-Value Cross-Lingual Auditing**
+   Audits alignment across distinct languages and cultural contexts, capturing dialect-level divergence (e.g., Castilian vs. Mexican Spanish) rather than relying on automated translations.
+
+---
+
+## Capabilities & Tooling
+
+The suite combines production-grade Python command-line tools, self-contained Google Colab notebooks, and datasets:
+
+- **X-Value Consensus/Pluralism Framework** — Audits cross-lingual value alignment.
+- **BBOM (Benchmark Bill of Materials)** — Implements supply-chain auditing for benchmark provenance and integrity.
+- **LLM-as-Judge** — Uses bias-corrected estimators and Pydantic structured outputs for high-precision evaluations.
+- **Human-in-the-Loop (HITL)** — Employs active learning triplet queries to refine rubrics and resolve corner cases.
+- **FiftyOne Integration** — Supports visual dataset curation for multimodal safety annotation.
+
+---
+
+## Citation
+
+To cite **L4BYR1NTH** / **ARTIFEX Safety Evals** in your research, safety audits, or publications, please use the following formats:
+
+### BibTeX
+```bibtex
+@software{L4BYR1NTH_2026,
+  author       = {Tuesday},
+  title        = {{L4BYR1NTH: ARTIFEX Multilingual Compositional Safety Evaluation Suite}},
+  institution  = {ARTIFEX Labs},
+  year         = {2026},
+  publisher    = {GitHub},
+  journal      = {GitHub repository},
+  howpublished = {\url{https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals}}
+}
+```
+
+### APA
+> Tuesday. (2026). *L4BYR1NTH: ARTIFEX Multilingual Compositional Safety Evaluation Suite* (Version 7-10). ARTIFEX Labs. Available at https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals.
 
 ---
 
