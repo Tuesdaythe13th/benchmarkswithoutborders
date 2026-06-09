@@ -430,9 +430,9 @@ logger.add(
 
 # ── Global constants (edit here to customise the pipeline) ─────────────────
 EMBED_MODEL       = "sentence-transformers/all-MiniLM-L6-v2"  # swap: BAAI/bge-m3
-GEMINI_MODEL      = "gemini-2.0-flash-exp"   # or "gemini-1.5-pro"
-CLAUDE_MODEL      = "claude-haiku-4-5-20251001"
-OPENAI_MODEL      = "gpt-4o-mini"
+GEMINI_MODEL      = "gemini-2.5-flash"   # or "gemini-1.5-pro"
+CLAUDE_MODEL      = "claude-sonnet-4-6"
+OPENAI_MODEL      = "gpt-4.1-mini"
 N_CLUSTERS        = 5      # K-Means k; use elbow method cell ⑦b to tune
 BATCH_SIZE        = 32     # embedding batch size
 RANDOM_SEED       = 42
@@ -974,55 +974,97 @@ logger.info(emoji.emojize(
 # ════════════════════════════════════════════════════════════════════════════
 
 def patch_v74():
-    nb_path = Path("ARTIFEX_v7.4_Ethical_Feedback_Loop.ipynb")
+    # Find notebook path robustly
+    nb_name = "ARTIFEX_v7.4_Ethical_Feedback_Loop.ipynb"
+    possible_paths = [
+        Path(nb_name),
+        Path("notebooks") / nb_name,
+        Path("../notebooks") / nb_name
+    ]
+    nb_path = None
+    for p in possible_paths:
+        if p.exists():
+            nb_path = p
+            break
+            
+    if not nb_path:
+        raise FileNotFoundError(f"Could not locate {nb_name} in standard paths.")
+
     with open(nb_path) as f:
         nb = json.load(f)
 
     cells = nb["cells"]
 
-    # Cell 0 — README (markdown)
+    def find_cell(substring, cell_type=None):
+        for idx, cell in enumerate(cells):
+            if cell_type and cell["cell_type"] != cell_type:
+                continue
+            src = get_source(cell)
+            if substring in src:
+                return idx
+        return None
+
+    # Update Readme (cell 0)
     set_source(cells[0], README_CELL)
 
-    # Cell 3 — Install (code)
-    set_source(cells[3], INSTALL_CELL)
+    # Find and update Install cell
+    idx_install = find_cell("Install Dependencies", "code") or find_cell("uv pip", "code")
+    if idx_install is not None:
+        set_source(cells[idx_install], INSTALL_CELL)
 
-    # Cell 5 — Header (code)
-    set_source(cells[5], HEADER_CELL)
+    # Find and update Header cell
+    idx_header = find_cell("ARTIFEX Header", "code")
+    if idx_header is not None:
+        set_source(cells[idx_header], HEADER_CELL)
 
-    # Cell 7 — Config (code)
-    set_source(cells[7], CONFIG_CELL)
+    # Find and update Config cell
+    idx_config = find_cell("Global Configuration", "code")
+    if idx_config is not None:
+        set_source(cells[idx_config], CONFIG_CELL)
 
-    # Cell 18 — LLM Setup (markdown)
-    set_source(cells[18], LLM_SETUP_MD)
+    # Find and update LLM Setup markdown & code cells
+    idx_llm_md = find_cell("LLM API Setup", "markdown")
+    if idx_llm_md is not None:
+        set_source(cells[idx_llm_md], LLM_SETUP_MD)
+        
+    idx_llm_code = find_cell("LLM API Setup", "code")
+    if idx_llm_code is not None:
+        set_source(cells[idx_llm_code], LLM_SETUP_CODE)
 
-    # Cell 19 — LLM Setup (code)
-    set_source(cells[19], LLM_SETUP_CODE)
+    # Find and update Watermark cell
+    idx_watermark = find_cell("Environment Tracking", "code") or find_cell("%watermark", "code")
+    if idx_watermark is not None:
+        set_source(cells[idx_watermark], WATERMARK_CODE)
 
-    # Cell 25 — Watermark (code)
-    set_source(cells[25], WATERMARK_CODE)
+    # Check and insert Elbow Method if missing
+    idx_elbow = find_cell("Elbow Method", "markdown") or find_cell("Optimal K Selection", "code")
+    if idx_elbow is None:
+        # Find UMAP/K-Means code cell to insert after
+        idx_kmeans = find_cell("UMAP Reduction + K-Means Clustering", "code")
+        if idx_kmeans is not None:
+            elbow_md_cell  = md(ELBOW_MD)
+            elbow_cod_cell = code(ELBOW_CODE)
+            cells.insert(idx_kmeans + 1, elbow_md_cell)
+            cells.insert(idx_kmeans + 2, elbow_cod_cell)
+            print("  Inserted Elbow Method cells.")
 
-    # Insert elbow method cells after cell 14 (UMAP+KMeans markdown) and 15 (code)
-    # They go BEFORE the 3D visualization (currently cells 16, 17)
-    # Insert at position 16 (after clustering code cell 15)
-    elbow_md_cell  = md(ELBOW_MD)
-    elbow_cod_cell = code(ELBOW_CODE)
-    cells.insert(16, elbow_cod_cell)
-    cells.insert(16, elbow_md_cell)
+    # Check and insert Export cells if missing
+    idx_export = find_cell("Export Results", "code")
+    if idx_export is None:
+        # Find the last cell which should be BBOM or Watermark to insert before
+        idx_watermark = find_cell("Environment Tracking", "code") or find_cell("%watermark", "code")
+        if idx_watermark is not None:
+            export_md_cell  = md(EXPORT_MD)
+            export_cod_cell = code(EXPORT_CODE)
+            cells.insert(idx_watermark, export_md_cell)
+            cells.insert(idx_watermark + 1, export_cod_cell)
+            print("  Inserted Export cells.")
 
-    # Now 3D viz is at 18, 19; LLM API at 20, 21; etc.
-    # Insert export cells BEFORE the final watermark cells
-    # Watermark md is now at index -2, watermark code at -1
-    export_md_cell  = md(EXPORT_MD)
-    export_cod_cell = code(EXPORT_CODE)
-    cells.insert(len(cells) - 2, export_cod_cell)
-    cells.insert(len(cells) - 3, export_md_cell)
-
-    # Renumber watermark section from ⑫ to ⑭ (added 2 new sections)
-    wm_md_idx   = len(cells) - 2   # markdown cell
-    wm_code_idx = len(cells) - 1   # code cell
-    old_src = get_source(cells[wm_md_idx])
-    set_source(cells[wm_md_idx], old_src.replace("## ⑫ Environment Tracking", "## ⑭ Environment Tracking"))
-    set_source(cells[wm_code_idx], WATERMARK_CODE)
+    # Ensure Watermark section header matches corrected numbering
+    idx_wm_md = find_cell("Environment Tracking", "markdown")
+    if idx_wm_md is not None:
+        old_src = get_source(cells[idx_wm_md])
+        set_source(cells[idx_wm_md], old_src.replace("## ⑫ Environment Tracking", "## ⑭ Environment Tracking"))
 
     with open(nb_path, "w") as f:
         json.dump(nb, f, indent=1, ensure_ascii=False)

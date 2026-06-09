@@ -1136,7 +1136,7 @@ def llm_summarize(texts: list, cluster_id: int) -> dict:
             import anthropic
             client = anthropic.Anthropic(api_key=API_KEYS["ANTHROPIC_API_KEY"])
             msg = client.messages.create(
-                model="claude-opus-4-7",
+                model="claude-sonnet-4-6",
                 max_tokens=512,
                 system=SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": user_msg}]
@@ -1151,7 +1151,7 @@ def llm_summarize(texts: list, cluster_id: int) -> dict:
             from openai import OpenAI
             client = OpenAI(api_key=API_KEYS["OPENAI_API_KEY"])
             resp = client.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4.1-mini",
                 messages=[{"role":"system","content":SYSTEM_PROMPT},
                           {"role":"user","content":user_msg}],
                 max_tokens=512, response_format={"type":"json_object"}
@@ -1280,7 +1280,7 @@ bbom = {
         "verdicts": {v: int(c) for v, c in df["ailuminate_verdict"].value_counts().items()},
     },
     "llm_summarization": {
-        "providers_tried": ["Anthropic claude-opus-4-7", "OpenAI gpt-4o", "HuggingFace Mistral-7B", "template"],
+        "providers_tried": ["Anthropic claude-sonnet-4-6", "OpenAI gpt-4.1-mini", "HuggingFace Mistral-7B", "template"],
         "clusters_summarized": len(CLUSTER_SUMMARIES),
     },
     "compliance": ["NIST AI 800-3", "MLCommons AILuminate v1.0", "ISO/IEC 42119-2"],

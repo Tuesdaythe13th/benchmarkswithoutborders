@@ -207,9 +207,9 @@ Choose your LLM judge backend. The APBR engine works with any of:
 
 | Provider | Model Default | Auth | Speed |
 |----------|--------------|------|-------|
-| **Gemini** | `gemini-2.0-flash` | Colab Secret `GEMINI_API_KEY` | Fast, free |
-| **OpenAI** | `gpt-4o` | Colab Secret `OPENAI_API_KEY` | Fast |
-| **Anthropic** | `claude-opus-4-7` | Colab Secret `ANTHROPIC_API_KEY` | Best reasoning |
+| **Gemini** | `gemini-2.5-flash` | Colab Secret `GEMINI_API_KEY` | Fast, free |
+| **OpenAI** | `gpt-4.1-mini` | Colab Secret `OPENAI_API_KEY` | Fast |
+| **Anthropic** | `claude-sonnet-4-6` | Colab Secret `ANTHROPIC_API_KEY` | Best reasoning |
 | **Ollama** | `llama3.1` | No key (local) | Offline |
 
 Set `PROVIDER` in the cell below. API keys are read from **Colab Secrets** first, then environment variables.
@@ -231,8 +231,8 @@ PROVIDER   = "gemini"        # "gemini" | "openai" | "anthropic" | "ollama"
 MODEL_NAME = ""              # leave blank to use the default below
 OLLAMA_URL = "http://localhost:11434"
 
-_DEFAULTS  = {"gemini": "gemini-2.0-flash", "openai": "gpt-4o",
-               "anthropic": "claude-opus-4-7", "ollama": "llama3.1"}
+_DEFAULTS  = {"gemini": "gemini-2.5-flash", "openai": "gpt-4.1-mini",
+               "anthropic": "claude-sonnet-4-6", "ollama": "llama3.1"}
 MODEL_NAME = MODEL_NAME or _DEFAULTS[PROVIDER]
 
 def _secret(key):

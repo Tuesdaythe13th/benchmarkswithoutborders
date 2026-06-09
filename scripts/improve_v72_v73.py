@@ -341,7 +341,22 @@ logger.info(emoji.emojize(":robot: ARTIFEX {version} run complete."))
 # ════════════════════════════════════════════════════════════════════════════
 
 def patch_notebook(nb_path, version, subtitle, accent_color, extra_pkgs=""):
-    with open(nb_path) as f:
+    nb_name = nb_path.name
+    possible_paths = [
+        nb_path,
+        Path("notebooks") / nb_name,
+        Path("../notebooks") / nb_name
+    ]
+    actual_path = None
+    for p in possible_paths:
+        if p.exists():
+            actual_path = p
+            break
+            
+    if not actual_path:
+        raise FileNotFoundError(f"Could not locate {nb_name} in standard paths.")
+
+    with open(actual_path) as f:
         nb = json.load(f)
 
     cells = nb["cells"]
@@ -384,10 +399,10 @@ def patch_notebook(nb_path, version, subtitle, accent_color, extra_pkgs=""):
             set_source(cells[last_code_idx], make_watermark_cell(version))
             print(f"  Replaced watermark cell at index {last_code_idx}")
 
-    with open(nb_path, "w") as f:
+    with open(actual_path, "w") as f:
         json.dump(nb, f, indent=1, ensure_ascii=False)
 
-    print(f"✅ Patched {nb_path.name} — {len(nb['cells'])} cells total")
+    print(f"✅ Patched {actual_path.name} — {len(nb['cells'])} cells total")
 
 
 if __name__ == "__main__":

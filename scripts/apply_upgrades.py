@@ -132,9 +132,10 @@ generate_compliance_bbom_record(None, None)
 """
 
 def process_notebook(nb_path):
-    with open(nb_path, "r") as f:
+    with open(nb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
         
+    has_bbom = False
     for i, cell in enumerate(nb["cells"]):
         src = "".join(cell.get("source", []))
         if "class ArtifexSwarmV72:" in src:
@@ -152,21 +153,40 @@ def process_notebook(nb_path):
             
         if "def acc(group):" in src or ("Quality Control" in src) or ("X-VALUE_AUDIT" in src):
             # Insert compute_gwets_ac2
-            cell["source"] = UPGRADE_3 + "\n" + src
+            if "compute_gwets_ac2" not in src:
+                cell["source"] = UPGRADE_3 + "\n" + src
+                
+        if "generate_compliance_bbom_record" in src:
+            has_bbom = True
             
-    # Append BBOM compliance log to all notebooks
-    nb["cells"].append({
-        "cell_type": "code",
-        "metadata": {},
-        "source": UPGRADE_4,
-        "outputs": [],
-        "execution_count": None
-    })
-    
-    with open(nb_path, "w") as f:
-        json.dump(nb, f, indent=1)
-    print(f"Updated {nb_path}")
+    # Append BBOM compliance log to notebooks only if not already present
+    if not has_bbom:
+        nb["cells"].append({
+            "cell_type": "code",
+            "metadata": {},
+            "source": [UPGRADE_4],
+            "outputs": [],
+            "execution_count": None
+        })
+        print(f"  Appended compliance log to {nb_path.name}")
+    else:
+        print(f"  Compliance log already present in {nb_path.name}")
+        
+    with open(nb_path, "w", encoding="utf-8") as f:
+        json.dump(nb, f, indent=1, ensure_ascii=False)
+    print(f"Updated {nb_path.name}")
 
-for file in glob.glob("*.ipynb"):
-    process_notebook(file)
+if __name__ == "__main__":
+    from pathlib import Path
+    
+    # Locate notebooks directory
+    notebooks_dir = Path("notebooks")
+    if not notebooks_dir.exists():
+        notebooks_dir = Path("../notebooks")
+    if not notebooks_dir.exists():
+        notebooks_dir = Path(".")
+        
+    print(f"Applying upgrades to notebooks in: {notebooks_dir.resolve()}")
+    for file_path in notebooks_dir.glob("*.ipynb"):
+        process_notebook(file_path)
 
