@@ -1,10 +1,5 @@
 ```
-██╗     ██╗  ██╗██████╗ ██╗   ██╗██████╗   ██╗███╗   ██╗████████╗██╗  ██╗
-██║     ██║  ██║██╔══██╗╚██╗ ██╔╝██╔══██╗ ███║████╗  ██║╚══██╔══╝██║  ██║
-██║     ███████║██████╔╝ ╚████╔╝ ██████╔╝ ╚██║██╔██╗ ██║   ██║   ███████║
-██║     ╚════██║██╔══██╗  ╚██╔╝  ██╔══██╗  ██║██║╚██╗██║   ██║   ██╔══██║
-███████╗     ██║██████╔╝   ██║   ██║  ██║  ██║██║ ╚████║   ██║   ██║  ██║
-╚══════╝     ╚═╝╚═════╝    ╚═╝   ╚═╝  ╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝
+
 
   ╔══════════════════════════════════════════════════════════════════════════════╗
   ║  COMPOSITIONAL SAFETY  ·  CROSS-LINGUAL VALUES  ·  ADAPTIVE BOOL RUBRICS   ║
@@ -13,22 +8,22 @@
   ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
 
-# L4BYR1NTH: ARTIFEX Safety Evals
+# Benchmarks Without Borders: ARTIFEX Safety Evals
 **Principal Investigator**: Tuesday, ARTIFEX Labs
 
 ---
 
-## About L4BYR1NTH & Core Pillars
+## About Benchmarks Without Borders & Core Pillars
 
-**L4BYR1NTH** is a next-generation **multilingual compositional safety evaluation suite** engineered to benchmark, analyze, and audit safety filters, routing mechanisms, and alignment boundaries in frontier AI systems. Built to implement the formal **2026 Measurement Science Framework**, L4BYR1NTH resolves the critical **"Validity Sinkhole"** and safeguards benchmarks against rapid saturation and decay (**Goodhart's Law**).
+**Benchmarks Without Borders** is a next-generation **multilingual compositional safety evaluation suite** engineered to benchmark, analyze, and audit safety filters, routing mechanisms, and alignment boundaries in frontier AI systems. Built to implement the formal **2026 Measurement Science Framework**, Benchmarks Without Borders resolves the critical **"Validity Sinkhole"** and safeguards benchmarks against rapid saturation and decay (**Goodhart's Law**).
 
 The architecture is structured around five core pillars:
 
 1. **Construct Validity & The "Validity Sinkhole" Resolution**
-   Standard static benchmarks suffer from rapid saturation and representation drift. L4BYR1NTH uses dynamically generated, compositional, and adversarial prompt matrices to evaluate models at their functional limits rather than matching rote templates.
+   Standard static benchmarks suffer from rapid saturation and representation drift. Benchmarks Without Borders uses dynamically generated, compositional, and adversarial prompt matrices to evaluate models at their functional limits rather than matching rote templates.
 
 2. **Adaptive Policy-Based Rubrics (APBR Framework)**
-   Rather than treating safety as a simple binary scalar, L4BYR1NTH defines safety via multi-dimensional, machine-checkable boolean gates at every pipeline decision point.
+   Rather than treating safety as a simple binary scalar, Benchmarks Without Borders defines safety via multi-dimensional, machine-checkable boolean gates at every pipeline decision point.
 
 3. **Rubric Invariant Failure Mode (RIFT) Verification**
    Automated detection of rubric drift, ensuring that the criteria for evaluating safety do not degrade or mutate under changing model outputs or varying prompting templates.
@@ -55,13 +50,13 @@ The suite combines production-grade Python command-line tools, self-contained Go
 
 ## Citation
 
-To cite **L4BYR1NTH** / **ARTIFEX Safety Evals** in your research, safety audits, or publications, please use the following formats:
+To cite **Benchmarks Without Borders** / **ARTIFEX Safety Evals** in your research, safety audits, or publications, please use the following formats:
 
 ### BibTeX
 ```bibtex
-@software{L4BYR1NTH_2026,
+@software{Benchmarks Without Borders_2026,
   author       = {Tuesday},
-  title        = {{L4BYR1NTH: ARTIFEX Multilingual Compositional Safety Evaluation Suite}},
+  title        = {{Benchmarks Without Borders: ARTIFEX Multilingual Compositional Safety Evaluation Suite}},
   institution  = {ARTIFEX Labs},
   year         = {2026},
   publisher    = {GitHub},
@@ -71,7 +66,7 @@ To cite **L4BYR1NTH** / **ARTIFEX Safety Evals** in your research, safety audits
 ```
 
 ### APA
-> Tuesday. (2026). *L4BYR1NTH: ARTIFEX Multilingual Compositional Safety Evaluation Suite* (Version 7-10). ARTIFEX Labs. Available at https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals.
+> Tuesday. (2026). *Benchmarks Without Borders: ARTIFEX Multilingual Compositional Safety Evaluation Suite* (Version 7-10). ARTIFEX Labs. Available at https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals.
 
 ---
 
