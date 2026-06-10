@@ -1,11 +1,4 @@
-```
 
-
-  ╔══════════════════════════════════════════════════════════════════════════════╗
-  ║  COMPOSITIONAL SAFETY  ·  CROSS-LINGUAL VALUES  ·  ADAPTIVE BOOL RUBRICS   ║
-  ║  BBOM SUPPLY-CHAIN AUDIT  ·  LLM-AS-JUDGE  ·  FIFTYONE MODEL EVALUATION    ║
-  ║  IRT-CALIBRATED BENCHMARKS  ·  NIST AI 800-3  ·  ISO/IEC 42119             ║
-  ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
 
 # Benchmarks Without Borders: ARTIFEX Safety Evals
