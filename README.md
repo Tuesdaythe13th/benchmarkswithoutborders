@@ -1,25 +1,11 @@
 ```
-██████╗ ███████╗███╗   ██╗ ██████╗██╗  ██╗███╗   ███╗ █████╗ ██████╗ ██╗  ██╗███████╗
-██╔══██╗██╔════╝████╗  ██║██╔════╝██║  ██║████╗ ████║██╔══██╗██╔══██╗██║  ██║██╔════╝
-██████╔╝█████╗  ██╔██╗ ██║██║     ███████║██╔████╔██║███████║██████╔╝███████║███████╗
-██╔══██╗██╔══╝  ██║╚██╗██║██║     ██╔══██║██║╚██╔╝██║██╔══██║██╔══██╗██╔══██║╚════██║
-██████╔╝███████╗██║ ╚████║╚██████╗██║  ██║██║ ╚═╝ ██║██║  ██║██║  ██║██║  ██║███████║
-╚══════╝╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
-
-            ██╗    ██╗██╗████████╗██╗  ██╗ ██████╗ ██╗   ██╗████████╗
-            ██║    ██║██║╚══██╔══╝██║  ██║██╔═══██╗██║   ██║╚══██╔══╝
-            ██║ █╗ ██║██║   ██║   ███████║██║   ██║██║   ██║   ██║   
-            ██║███╗██║██║   ██║   ██╔══██║██║   ██║██║   ██║   ██║   
-            ╚███╔███╔╝██║   ██║   ██║  ██║╚██████╔╝╚██████╔╝   ██║   
-             ╚══╝╚══╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   
-
-██████╗  ██████╗ ██████╗ ██████╗ ███████╗██████╗  ███████╗
-██╔══██╗██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔════╝
-██████╔╝██║   ██║██████╔╝██║  ██║█████╗  ██████╔╝███████╗
-██╔══██╗██║   ██║██╔══██╗██║  ██║██╔══╝  ██╔══██╗╚════██║
-██████╔╝╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║███████║
-╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  ┌┐ ┌─┐┌┐┌┌─┐┬ ┬┌┬┐┌─┐┬─┐┬┌─┌─┐  ┬ ┬┬┌┬┐┬ ┬┌─┐┬ ┬┌┬┐  ┌┐ ┌─┐┬─┐┌┬┐┌─┐┬─┐┌─┐  │
+│  ├┴┐├┤ ││││  ├─┤│││├─┤├┬┘├┴┐└─┐  ││││ │ |_|│ ││ │ │   ├┴┐│ │├┬┘ ││├┤ ├┬┘└─┐  │
+│  └─┘└─┘┘└┘└─┘┴ ┴┴ ┴┴ ┴┴└─┴ ┴└─┘  └┴┘┴ ┴ ┴ ┴└─┘└─┘ ┴   └─┘└─┘┴└──┴┘└─┘┴└─└─┘  │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
+
 
 # Benchmarks Without Borders: ARTIFEX Safety Evals
 **Principal Investigator**: Tuesday, ARTIFEX Labs
@@ -74,22 +60,23 @@ To cite **Benchmarks Without Borders** / **ARTIFEX Safety Evals** in your resear
   year         = {2026},
   publisher    = {GitHub},
   journal      = {GitHub repository},
-  howpublished = {\url{https://github.com/Tuesdaythe13th/benchmarkswithoutborders}}
+  howpublished = {\url{https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals}}
 }
 ```
 
 ### APA
-> Tuesday. (2026). *Benchmarks Without Borders: ARTIFEX Multilingual Compositional Safety Evaluation Suite* (Version 7-10). ARTIFEX Labs. Available at https://github.com/Tuesdaythe13th/benchmarkswithoutborders.
+> Tuesday. (2026). *Benchmarks Without Borders: ARTIFEX Multilingual Compositional Safety Evaluation Suite* (Version 7-10). ARTIFEX Labs. Available at https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals.
 
 ---
 
 ## Repository Structure
 
 ```
-benchmarkswithoutborders/
+multilingualcompositionalsafety_evals/
 │
 ├── 📁 notebooks/                       Jupyter / Colab Notebooks
 │   ├── safety_routing_colab.ipynb              ★ Ethical AI feedback loop — full v3.1 pipeline
+│   ├── ARTIFEX_v3.1_Advanced_Colab.ipynb       Advanced v3.1 pipeline
 │   ├── ARTIFEX_v7_Compositional_Safety.ipynb   ★ Core multilingual swarm — v7.1 reference notebook
 │   ├── ARTIFEX_v7.2_Spanish_Benchmark.ipynb    68-prompt Colombian-context benchmark
 │   ├── ARTIFEX_v7.3_Dialect_Divergence.ipynb   Castilian vs. Mexican Spanish DIF analysis
@@ -99,10 +86,12 @@ benchmarkswithoutborders/
 │   ├── ARTIFEX_v8_E2E_Safety_Pipeline.ipynb    End-to-end safety pipeline
 │   ├── ARTIFEX_v9_Ethical_Feedback_AILuminate.ipynb 500 jailbreak prompts × 4 categories
 │   ├── ARTIFEX_v10_Autoevaluator_Architecture.ipynb Autoevaluator architecture (v10)
-│   ├── ARTIFEX_v3.1_Advanced_Colab.ipynb       Advanced v3.1 pipeline
+│   ├── ARTIFEX_v11_MechInterp_Pipeline.ipynb   Mechanistic interpretability evaluation pipeline
 │   ├── ARTIFEX_Evaluator_Design_Guide.ipynb    Pedagogical walkthrough of all evaluator architectures
+│   ├── DeepSearchQA_Starter_Code.ipynb         Starter code for Google AI Studio search-grounded QA
+│   ├── fairness_failure_dashboard.ipynb        Cohort fairness & failure cluster analysis
 │   ├── spanish_ailuminate_hf_colab.ipynb       Spanish AILuminate jailbreak benchmark (HuggingFace)
-│   └── fairness_failure_dashboard.ipynb        Cohort fairness & failure cluster analysis
+│   └── wizmap.ipynb                            Interactive WizMap embedding visualization
 │
 ├── 📁 scripts/                         🐍 Core Python Scripts & Notebook Tools
 │   ├── evaluator.py                   High-throughput multilingual safety evaluator (XLM-R, AMP, checkpoint/resume)
@@ -167,7 +156,7 @@ benchmarkswithoutborders/
 ### Install Dependencies
 
 ```bash
-git clone https://github.com/Tuesdaythe13th/benchmarkswithoutborders.git
+git clone https://github.com/Tuesdaythe13th/multilingualcompositionalsafety_evals.git
 cd benchmarkswithoutborders
 pip install -r requirements.txt
 ```
@@ -318,20 +307,28 @@ These scripts generate, improve, and maintain the Colab notebooks. They are CI/d
 
 ## Notebook Index
 
+> [!NOTE]
 > All notebooks include a § 2026 Measurement Science cell mapping methodology to NIST AI 800-3 GLMMs, IRT 3PL construct validity, and the five facets of validity.
 
-| Notebook | Open in Colab | Description | Validity Facet |
-|---|---|---|---|
-| **safety_routing** ★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/safety_routing_colab.ipynb) | **Ethical AI Feedback Loop Analysis** — Full Artifex Labs v3.1: uv install, Colab Secrets, ydata-profiling EDA, sentence-transformers embeddings, K-Means clustering, LLM summarization (OpenAI/Anthropic/extractive), Brutalist HTML explainers, %watermark audit. | Consequential validity |
-| **v7.1 Core Swarm** ★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/ARTIFEX_v7_Compositional_Safety.ipynb) | **Core Multilingual Swarm** — Adaptive boolean rubrics, jury routing, dual-encoder embeddings, HDBSCAN soft memberships, calibrated LLM-as-judge, triplet HITL, FiftyOne model evaluation. | Construct validity |
-| **v7.2 Spanish** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/ARTIFEX_v7.2_Spanish_Benchmark.ipynb) | **Spanish Benchmark Edition** — 68-prompt Colombian-context benchmark, X-Value Radar charts, DIF detection, bias-corrected LLM-as-Judge. | Content validity |
-| **v7.3 Dialect** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/ARTIFEX_v7.3_Dialect_Divergence.ipynb) | **Dialect Divergence Benchmark** — Castilian vs. Mexican Spanish, 200-pair parallel corpus, IRT-based DIF analysis, common-person linking. | External validity |
-| **v7.4 Feedback Loop** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/ARTIFEX_v7.4_Ethical_Feedback_Loop.ipynb) | **Ethical Feedback Loop** — Agentic benchmarking, time-horizon metric, propensity vs. capability distinction. | Consequential validity |
-| **v7.5 English** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/ARTIFEX_v7.5_English_Cultural_Alignment.ipynb) | **English Cultural Alignment** — US/UK/AU English dialects, spelling/idiom/politeness variation, per-sample IRT θ̂ metrics. | Criterion validity |
-| **v8 Agentic** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/ARTIFEX_v8_Agentic_Alignment_Engine.ipynb) | **Agentic Alignment Engine** — LangGraph routing, VLM auditing, automated adversarial red-teaming, multi-agent safety alignment. | Construct validity |
-| **Evaluator Guide** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/ARTIFEX_Evaluator_Design_Guide.ipynb) | **Evaluator Design Guide** — Pedagogical walkthrough of all three evaluator architectures, mechanistic interpretability, rubric engineering, 2026 SOTA model selection. | — |
-| **Spanish AILuminate** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/spanish_ailuminate_hf_colab.ipynb) | **Spanish AILuminate Jailbreaking** — 500 prompts × 4 categories, Qwen3-235B MUT, 3-judge majority voting (JSR/CCR metrics), BLOCK/WARNING/PASS gates. | Content validity |
-| **Fairness Dashboard** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/benchmarkswithoutborders/blob/main/fairness_failure_dashboard.ipynb) | **Cohort Fairness & Failure Clusters** — Loads `results/*_metrics.json`, per-language micro_f1 gap analysis, structured failure cluster manifest. | External validity |
+| Category | Notebook | Open in Colab | Description | Validity Facet |
+| :--- | :--- | :--- | :--- | :--- |
+| **Core Swarm & Routing** | **safety_routing** ★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/safety_routing_colab.ipynb) | **Ethical AI Feedback Loop Analysis** — Full Artifex Labs v3.1: uv install, Colab Secrets, ydata-profiling EDA, sentence-transformers embeddings, K-Means clustering, LLM theme summarization, and safety routing. | Consequential validity |
+| | **v7.1 Core Swarm** ★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v7_Compositional_Safety.ipynb) | **Core Multilingual Swarm** — Adaptive boolean rubrics, jury routing, dual-encoder embeddings, HDBSCAN soft memberships, calibrated LLM-as-judge, and triplet HITL. | Construct validity |
+| | **v8.0 Agentic Engine** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v8_Agentic_Alignment_Engine.ipynb) | **Agentic Alignment Engine** — LangGraph routing, VLM auditing, automated adversarial red-teaming, and multi-agent safety alignment. | Construct validity |
+| | **v8.0 E2E Pipeline** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v8_E2E_Safety_Pipeline.ipynb) | **End-to-End Safety Pipeline** — Complete pipeline covering ingestion, embedding, clustering, and routing. | Construct validity |
+| | **v3.1 Advanced Colab** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v3.1_Advanced_Colab.ipynb) | **Advanced v3.1 Pipeline** — Legacy feedback loop analysis with automated clustering and summarization. | Consequential validity |
+| **Regional & Dialect** | **v7.2 Spanish** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v7.2_Spanish_Benchmark.ipynb) | **Spanish Benchmark Edition** — 68-prompt Colombian-context benchmark, X-Value Radar charts, and DIF detection. | Content validity |
+| | **v7.3 Dialect** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v7.3_Dialect_Divergence.ipynb) | **Dialect Divergence Benchmark** — Castilian vs. Mexican Spanish, 200-pair parallel corpus, and IRT-based DIF analysis. | External validity |
+| | **v7.5 English** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v7.5_English_Cultural_Alignment.ipynb) | **English Cultural Alignment** — US/UK/AU English dialects, spelling/idiom/politeness variation, and per-sample IRT θ̂ metrics. | Criterion validity |
+| **Advanced Auditing** | **v7.4 Feedback Loop** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v7.4_Ethical_Feedback_Loop.ipynb) | **Ethical Feedback Loop** — Agentic benchmarking, time-horizon metric, and propensity vs. capability distinction. | Consequential validity |
+| | **v9.0 AILuminate** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v9_Ethical_Feedback_AILuminate.ipynb) | **Ethical AI Feedback Loop Analysis × AILuminate Integration** — 500 jailbreak prompts × 4 categories, 3-judge majority voting. | Consequential validity |
+| | **v10 Autoevaluator** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v10_Autoevaluator_Architecture.ipynb) | **Autoevaluator Architecture Walkthrough** — APBR v2.2 jailbreak scoring, multi-provider judge, and Gwet's AC₂ inter-rater reliability. | Construct validity |
+| | **v11 MechInterp** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_v11_MechInterp_Pipeline.ipynb) | **Mechanistic Interpretability Evaluation Pipeline** — Neuron-level/activation safety routing audits and transformer mechanistic interpretability using Neuronpedia. | Construct validity |
+| | **Spanish AILuminate** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/spanish_ailuminate_hf_colab.ipynb) | **Spanish AILuminate Jailbreaking** — 500 prompts × 4 categories, Qwen3-235B MUT, 3-judge majority voting, and Hugging Face Inference Client integration. | Content validity |
+| **Dashboards & Guides** | **Evaluator Guide** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/ARTIFEX_Evaluator_Design_Guide.ipynb) | **Evaluator Design Guide** — Pedagogical walkthrough of all evaluator architectures, mechanistic interpretability, rubric engineering, and 2026 SOTA model selection. | — |
+| | **Fairness Dashboard** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/fairness_failure_dashboard.ipynb) | **Cohort Fairness & Failure Clusters** — Cohort fairness analysis, gap visualization, and structured failure cluster analysis. | External validity |
+| **Demos & Starter Code** | **DeepSearchQA Starter** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/DeepSearchQA_Starter_Code.ipynb) | **DeepSearchQA Starter Code** — Setup Google AI Studio keys and query search-grounded QA tasks. | Criterion validity |
+| | **WizMap Visualizer** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tuesdaythe13th/multilingualcompositionalsafety_evals/blob/main/wizmap.ipynb) | **WizMap Embedding Visualization** — Interactive 2.5D embedding map demo for visualizing text datasets. | External validity |
 
 ---
 
